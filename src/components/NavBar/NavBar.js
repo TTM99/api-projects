@@ -28,7 +28,7 @@ const NavBar = () => {
         <StyledNav>
           <StyledButton
             clicked={page === 1 ? 1 : 0}
-            onClick={() => PageNavigation(1, "/")}
+            onClick={() => PageNavigation(1, "/coviddata")}
           >
             Covid Data
           </StyledButton>
