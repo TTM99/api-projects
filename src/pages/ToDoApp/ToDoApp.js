@@ -37,22 +37,30 @@ const ToDoApp = () => {
   };
 
   const onAdd = () => {
-    setToDoList([...toDoList, toDoTask]);
-    // setting the data in new array and pushing the array makes the last element of the array not push in the local storage
-    localStorage.setItem("ToDoList", JSON.stringify([...toDoList, toDoTask]));
-    setToDoTask({ ...toDoTask, task: "" });
+    if (toDoTask.task === "") {
+      alert("The task cannot be empty");
+    } else {
+      setToDoList([...toDoList, toDoTask]);
+      // setting the data in new array and pushing the array makes the last element of the array not push in the local storage
+      localStorage.setItem("ToDoList", JSON.stringify([...toDoList, toDoTask]));
+      setToDoTask({ ...toDoTask, task: "" });
+    }
   };
 
   const onUpdate = () => {
-    const updatedToDoList = toDoList.map((item) =>
-      item.taskTime === updatedTaskTime
-        ? { ...item, task: toDoTask.task }
-        : { ...item, item }
-    );
-    setToDoList(updatedToDoList);
-    localStorage.setItem("ToDoList", JSON.stringify(updatedToDoList));
-    setToDoTask({ ...toDoTask, task: "" });
-    setEdit(false);
+    if (toDoTask.task === "") {
+      alert("The Task cannot be empty");
+    } else {
+      const updatedToDoList = toDoList.map((item) =>
+        item.taskTime === updatedTaskTime
+          ? { ...item, task: toDoTask.task }
+          : { ...item, item }
+      );
+      setToDoList(updatedToDoList);
+      localStorage.setItem("ToDoList", JSON.stringify(updatedToDoList));
+      setToDoTask({ ...toDoTask, task: "" });
+      setEdit(false);
+    }
   };
 
   const onEdit = ({ task, taskTime }) => {
